@@ -328,12 +328,11 @@ html{
 .right-message{
     display: flex;
     justify-content: flex-end;
+}
+.right-msg-area{
     max-width: 50%;
     width: auto;
 }
-/* .right-msg-area{
-
-} */
 .right-time{
     display: block;
     text-align: right;
@@ -474,8 +473,8 @@ html{
         max-width: 100%;
         width: auto;
     }
-    .right-message{
-        max-width: 100%;
+    .right-msg-area{
+        max-width: 90%;
         width: auto;
     }
     .message-area{
