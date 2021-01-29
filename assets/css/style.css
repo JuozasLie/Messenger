@@ -7,6 +7,9 @@
     --color-silver: #e4e7ea;
     --color-white: #fff;
     --color-black: #000;
+    --color-silver-2: #54667a;
+    --color-silver-3: #f1f1f4;
+    --color-silver-4: #999;
 }
 
 * {
@@ -124,7 +127,7 @@ html{
 
 .sign-up-left{
     width: 70%;
-    background-image: linear-gradient(to right bottom, rgba(40,180,112,.90) 50%, transparent 50%), url("../images/alizee-baudez-srUzc3I_h8Q-unsplash.jpg");
+    background-image: linear-gradient(to right bottom, rgba(40,180,112,.90) 50%, transparent 50%), url("../images/alizee-baudez.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -140,7 +143,291 @@ html{
     color: var(--color-white);
 }
 
+/* === Chat area === */
+#nav{
+    width: 100%;
+    height: 10vh;
+    background: linear-gradient(to right, var(--color-green-dark), var(--color-green-light));
+    box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.2);
+}
 
+.chat-main-container{
+    display: flex;
+}
+
+/* === Side bar === */
+#sidebar{
+    width: 20%;
+    height: 90vh;
+    background-color: var(--color-white);
+    box-shadow: .8rem 0 .6rem -1rem rgba(0,0,0,0.5);
+    position: relative;
+}
+
+#sidebar::before {
+    position: absolute;
+    content: "Profile";
+    width: 100%;
+    height: 10vh;
+    top: -10vh;
+    background: linear-gradient(to right, var(--color-green-light), var(--color-green-dark));
+    box-shadow: .3rem -.2rem .5rem 0px rgba(0,0,0,0.2);
+    line-height: 10vh;
+    text-align: center;
+    font-size: 1.6rem;
+    color: var(--color-white);
+}
+
+.sidebar-list{
+    margin: 3rem 0;
+    padding: 0;
+}
+.sidebar-list li{
+    list-style: none;
+}
+.sidebar-list li:not(:first-child):hover{
+    background: linear-gradient(to right, var(--color-green-light), var(--color-green-dark));
+}
+
+.sidebar-list li a{
+    text-decoration: none;
+    display: block;
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--color-black);
+    position: relative;
+}
+.siderbar li:hover a{
+    color: var(--color-white);
+}
+.hover-effect{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: all .3s;
+}
+.sidebar-list li:hover .hover-effect{
+    width: 100%;
+}
+
+.profile-img-span{
+    display:block;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.profile-img{
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    transition: all 03s;
+}
+.profile-img-span:hover .profile-img{
+    transform: scale(1.5);
+}
+/* === Message area === */
+#right-area{
+    width: 80%;
+    height: 90vh;
+}
+
+.message-area{
+    width: 100%;
+    height: 75vh;
+    padding: 2rem;
+    overflow-x: hidden !important;
+    overflow: scroll;
+}
+.online-icon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--color-green-dark);
+    display:block;
+    border-radius: 50%;
+    border: 1px solid var(--color-white);
+}
+.offline-icon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1rem;
+    height: 1rem;
+    background-color: red;
+    display:block;
+    border-radius: 50%;
+    border: 1px solid var(--color-white);
+}
+.common-msg-margin{
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+    /* === Left messages === */
+.left-message{
+    display: flex;
+    width: 50%;
+}
+        /* === Profile image === */
+.sender-img-block{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    position: relative;
+}
+
+.sender-img{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+}
+        /* === Chat area text === */
+.left-msg-area{
+    margin-left: 2rem;
+}
+.sender-name{
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--color-silver-4);
+}
+.date-time{
+    margin-left: 2rem;
+    color: var(--color-silver-4);
+}
+.left-msg{
+    padding: 1rem;
+    width: auto;
+    background: linear-gradient(to right, var(--color-green-light), var(--color-green-dark));
+    color: var(--color-black);
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+    margin-top: .3rem;
+    position: relative;
+    font-size: 1.2rem;
+}
+.left-msg::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: -.7rem;
+    width: 0;
+    height: 0;
+    border-top: .7rem solid var(--color-green-light);
+    border-left: .7rem solid transparent;
+}
+    /* === Right messages === */
+.right-messages{
+    display: flex;
+    justify-content: flex-end;
+}
+.right-msg-area{
+    max-width: 50%;
+    width: auto;
+}
+.right-time{
+    display: block;
+    text-align: right;
+}
+.right-msg{
+    padding: 1rem;
+    width: auto;
+    background-color: var(--color-silver-3);
+    color: var(--color-black);
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+    margin-top: .3rem;
+    font-size: 1.2rem;
+}
+ /* === Custom scroll bar === */
+.messages::-webkit-scrollbar{
+    width: 1rem;
+    background-color: var(--color-silver-3);
+}
+.messages::-webkit-scrollbar-thumb{
+    background-color: #888;
+    border-radius: 1rem;
+}
+/* === Custom scroll bar for firefox === */
+.message-area{
+    scrollbar-color: #888 var(--color-silver-3);
+    scrollbar-width: thin;
+}
+
+ /* === chat area === */
+.chat-form{
+    width: 100%;
+    height: 10vh;
+    border-top: 1px solid var(--color-silver-3);
+}
+.chat-form-container{
+    display: flex;
+}
+.form-input {
+    width: 50%;
+}
+.textarea-control{
+    width: 100%;
+    border: 0;
+    padding: 1rem 2rem;
+    height: 5rem;
+    resize: none;
+    margin-left: .5rem;
+}
+
+.textarea-control:focus{
+    outline: none;
+}
+.upload-files{
+    display: none;
+}
+#upload-label{
+    width: 100%;
+    height: 5rem;
+    line-height: 5.5rem;
+    display:block;
+    text-align: center;
+}
+#upload-label:hover{
+    cursor: pointer;
+}
+.fa-uploads{
+    font-size: 1.8rem;
+    margin-left: 3rem;
+    color: var(--color-silver-4);
+}
+::-webkit-input-placeholder{
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+::placeholder{
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+.emoji{
+    height: 5vh;
+    width: 100%;
+}
+.emoji-icon{
+    width: 2rem;
+    height: 2rem;
+    margin-left: 1rem;
+}
+
+.form-section{
+    padding: 3rem;
+}
+.form-grid{
+    width: 35%;
+}
 /* === Media queries === */
 @media (max-width: 765px){
     .sign-up-left{

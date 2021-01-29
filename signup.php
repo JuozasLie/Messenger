@@ -24,7 +24,7 @@
                         <h2 class="form-heading">Create your account</h2>
                     </div><!-- group -->
                     <div class="group">
-                        <input type="text" name="full_name" class="control" placeholder="Enter your Full name">
+                        <input type="text" name="user_name" class="control" placeholder="Enter your Username">
                     </div><!-- group -->
                     <div class="group">
                         <input type="email" name="email" class="control" placeholder="Enter your Email">
