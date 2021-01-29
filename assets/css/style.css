@@ -149,6 +149,7 @@ html{
     height: 10vh;
     background: linear-gradient(to right, var(--color-green-dark), var(--color-green-light));
     box-shadow: 0px 1px 3px 1px rgba(0,0,0,0.2);
+    position: relative;
 }
 
 .chat-main-container{
@@ -324,14 +325,15 @@ html{
     border-left: .7rem solid transparent;
 }
     /* === Right messages === */
-.right-messages{
+.right-message{
     display: flex;
     justify-content: flex-end;
-}
-.right-msg-area{
     max-width: 50%;
     width: auto;
 }
+/* .right-msg-area{
+
+} */
 .right-time{
     display: block;
     text-align: right;
@@ -428,6 +430,22 @@ html{
 .form-grid{
     width: 35%;
 }
+
+.bars{
+    display: none;
+}
+.custom-bars{
+    position:absolute;
+    float: right;
+    font-size: 1.8rem;
+    color: var(--color-white);
+    right: 3rem;
+    top: 33%;
+}
+.custom-bars:hover{
+    cursor: pointer;
+}
+
 /* === Media queries === */
 @media (max-width: 765px){
     .sign-up-left{
@@ -436,4 +454,33 @@ html{
     .sign-up-right {
         width: 100%;
     }
+    .chat-main-container{
+        flex-wrap: wrap;
+    }
+    .bars{
+        display:block;
+    }
+    #sidebar{
+        width: 100%;
+        display:none;
+    }
+    #sidebar::before{
+        width: 30%;
+    }
+    #right-area{
+        width: 100%;
+    }
+    .left-message{
+        max-width: 100%;
+        width: auto;
+    }
+    .right-message{
+        max-width: 100%;
+        width: auto;
+    }
+    .message-area{
+        height: 70vh;
+    }
+
+
 }

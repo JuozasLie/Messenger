@@ -11,7 +11,7 @@
 </head>
 <body>
     <nav id="nav">
-        nav area
+        <span class="bars"><i class="fas fa-bars custom-bars"></i></span>
     </nav>
 
     <div class="chat-main-container">
@@ -71,7 +71,17 @@
                     </div> <!-- left msg area -->
                 </div> <!-- left message -->
 
-                <div class="right-messages common-msg-margin">
+                <div class="right-message common-msg-margin">
+                    <div class="right-msg-area">
+                        <span class="date-time right-time">
+                            1 day ago
+                        </span> <!-- date time -->
+                        <div class="right-msg">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit molestiae veniam qui culpa amet quis officia, eos nisi aperiam reiciendis nihil consequuntur ipsum! Tempora quod facere perspiciatis assumenda deleniti dolorum.
+                        </div><!-- right msg -->
+                    </div><!--right msg area -->
+                </div><!-- right-message -->
+                <div class="right-message common-msg-margin">
                     <div class="right-msg-area">
                         <span class="date-time right-time">
                             1 day ago
@@ -81,7 +91,7 @@
                         </div><!-- right msg -->
                     </div><!--right msg area -->
                 </div><!-- right-messages -->
-                <div class="right-messages common-msg-margin">
+                <div class="right-message common-msg-margin">
                     <div class="right-msg-area">
                         <span class="date-time right-time">
                             1 day ago
@@ -91,7 +101,7 @@
                         </div><!-- right msg -->
                     </div><!--right msg area -->
                 </div><!-- right-messages -->
-                <div class="right-messages common-msg-margin">
+                <div class="right-message common-msg-margin">
                     <div class="right-msg-area">
                         <span class="date-time right-time">
                             1 day ago
@@ -101,7 +111,7 @@
                         </div><!-- right msg -->
                     </div><!--right msg area -->
                 </div><!-- right-messages -->
-                <div class="right-messages common-msg-margin">
+                <div class="right-message common-msg-margin">
                     <div class="right-msg-area">
                         <span class="date-time right-time">
                             1 day ago
@@ -111,7 +121,7 @@
                         </div><!-- right msg -->
                     </div><!--right msg area -->
                 </div><!-- right-messages -->
-                <div class="right-messages common-msg-margin">
+                <div class="right-message common-msg-margin">
                     <div class="right-msg-area">
                         <span class="date-time right-time">
                             1 day ago
@@ -121,17 +131,7 @@
                         </div><!-- right msg -->
                     </div><!--right msg area -->
                 </div><!-- right-messages -->
-                <div class="right-messages common-msg-margin">
-                    <div class="right-msg-area">
-                        <span class="date-time right-time">
-                            1 day ago
-                        </span> <!-- date time -->
-                        <div class="right-msg">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit molestiae veniam qui culpa amet quis officia, eos nisi aperiam reiciendis nihil consequuntur ipsum! Tempora quod facere perspiciatis assumenda deleniti dolorum.
-                        </div><!-- right msg -->
-                    </div><!--right msg area -->
-                </div><!-- right-messages -->
-                <div class="right-messages common-msg-margin">
+                <div class="right-message common-msg-margin">
                     <div class="right-msg-area">
                         <span class="date-time right-time">
                             1 day ago
@@ -195,6 +195,13 @@
             </div><!-- emoji -->
         </section> <!--Right area -->
     </div> <!-- chat main container -->
-
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".custom-bars").click(function(){
+                $("#sidebar").slideToggle();
+            })
+        })
+    </script>
 </body>
 </html>
