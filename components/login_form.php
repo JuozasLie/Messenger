@@ -2,7 +2,7 @@
     <?php 
         if(isset($_SESSION['account_success'])){
     ?>      <div class="alert alert-success">
-                <?php echo $_SESSION['account_success']; ?>
+                <?php echo $_SESSION['account_created']; ?>
             </div> <!-- alert --> 
     
 <?php   }
@@ -16,7 +16,7 @@
         <div class="email-error error">
             <?php
             if(isset($email_error)){
-                echo $email_errorr;
+                echo $email_error;
             } ?> 
         </div>
         <div class="group">

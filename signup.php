@@ -26,6 +26,10 @@ if(isset($_POST["signup"])){
             $username_status = "";
         }
     }
+    if(strlen($username) < 5 || strlen($username) > 25){
+        $username_error = "Username must be more than 5 and less than 25 characters";
+        $username_status = "";
+    }
     //email validation
     if(empty($email)){
         $email_error = "Email is required";
@@ -61,9 +65,10 @@ if(isset($_POST["signup"])){
     }
     //Check Values and upload to db
     if(!empty($username_status) && !empty($email_status) && !empty($password_status) && !empty($image_status)){
-        move_uploaded_file($img_tmp, "$img_path.$img_name");
+        $img_path = $img_path.$img_name;
+        move_uploaded_file($img_tmp, "$img_path");
         $obj->normal_Query("INSERT INTO users(user_name, user_email, user_password, image, status) VALUES (?,?,?,?,?)", [$username, $email, password_hash($password, PASSWORD_DEFAULT), $img_name, $status]);
-        $obj->create_Session("account_success", "Your account is successfully created");
+        $obj->create_Session("account_created", "Your account is successfully created");
         header("Location: login.php");
     }
 }

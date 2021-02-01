@@ -10,6 +10,7 @@
     --color-silver-2: #54667a;
     --color-silver-3: #f1f1f4;
     --color-silver-4: #999;
+    --color-red: #CD5C5C;
 }
 
 * {
@@ -262,7 +263,7 @@ html{
     right: 0;
     width: 1rem;
     height: 1rem;
-    background-color: red;
+    background-color: var(--color-red);
     display:block;
     border-radius: 50%;
     border: 1px solid var(--color-white);
@@ -446,7 +447,7 @@ html{
 }
 /* === Error messages === */
 .error{
-    color: red;
+    color:var(--color-red);
     text-align: left;
     font-size: 1.2rem;
     margin-top: .2rem;
@@ -468,6 +469,68 @@ html{
     background-color: var(--color-green);
     color: var(--color-black);
 }
+/* === Flash message === */
+.flash-message{
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    width: 40rem;
+    height: auto;
+    background-color: var(--color-white);
+    padding: 1.5rem;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.5);
+    z-index: 9999;
+    border-radius: .3rem;
+}
+.success-flash{
+    color: var(--color-green);
+}
+.flash-heading{
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.checked{
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    border: 1px solid var(--color-green);
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+.flash-body p{
+    margin-top: .5rem;
+    margin-left: 3.8rem;
+    font-size: 1.2rem;
+}
+.remove-flash{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.6rem;
+    color: var(--color-black);
+    font-weight: 500;
+}
+.remove-flash:hover{
+    cursor: pointer;
+}
+.error-flash{
+    color: var(--color-red);
+    top: 50%;
+}
+.cross{
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    border: 1px solid var(--color-red);
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
 /* === Media queries === */
 @media (max-width: 765px){
     .sign-up-left{
@@ -502,6 +565,10 @@ html{
     }
     .message-area{
         height: 70vh;
+    }
+    .flash-message{
+        width: 80%;
+        left: 10%;
     }
 
 

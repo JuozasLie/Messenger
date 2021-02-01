@@ -3,7 +3,6 @@
 class base_class extends db {
     private $query;
     public function normal_Query($query, $param = null){
-        //select * from users
         if(is_null($param)){
             $this->query = $this->con->prepare($query);
             return $this->query->execute();
@@ -23,7 +22,6 @@ class base_class extends db {
     }
     public function create_Session($session_name,$session_value){
         $_SESSION["$session_name"] = $session_value;
-        $_SESSION['success'] = "Your account is successfully created!";
     }
     public function single_Result(){
         return $this->query->fetch(PDO::FETCH_OBJ);

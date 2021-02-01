@@ -20,15 +20,16 @@ if(isset($_POST["login"])){
                 $email_error = "Email does not exist";
             } else{
                 $row = $obj->Single_Result();
-                print_r($row);
                 $db_email = $row->user_email;
                 $db_password = $row->user_password;
                 $user_id = $row->user_id;
                 $user_name = $row->user_name;
+                $user_image = $row->image;
 
                 if(password_verify($password, $db_password)){
                     $obj->create_Session("user_name", $user_name);
-                    $obj->create_Session("user_id", $user_id); 
+                    $obj->create_Session("user_id", $user_id);
+                    $obj->create_Session("user_image", $user_image);
                     header("Location:index.php");   
                 } else {
                     $password_error = "Incorrect password";

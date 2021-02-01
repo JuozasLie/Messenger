@@ -10,7 +10,7 @@
                         } ?> 
                     </div>
                     <div class="group">
-                        <input type="text" name="user_name" class="control" placeholder="Enter your Username" required value="<?php if(isset($username)): echo $username; endif; ?>">
+                        <input type="text" name="user_name" class="control" placeholder="Enter your Username" minlength="5" maxlength="25" required value="<?php if(isset($username)): echo $username; endif; ?>">
                     </div><!-- group -->
                     <div class="email-error error">
                         <?php
@@ -28,7 +28,7 @@
                         } ?> 
                     </div>
                     <div class="group">
-                        <input type="password" name="password" class="control" placeholder="Create your password" required value="<?php if(isset($password)): echo $password; endif; ?>">
+                        <input type="password" name="password" class="control" placeholder="Create your password" minlength="5" maxlength="100" required value="<?php if(isset($password)): echo $password; endif; ?>">
                     </div><!-- group -->
                     <div class="image-error error">
                         <?php
