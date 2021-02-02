@@ -1,5 +1,6 @@
 <?php
 include "init.php";
+include "security";
 $obj = new base_class;
 if(isset($_POST["signup"])){
     $username = $obj->security($_POST["user_name"]);
@@ -7,7 +8,7 @@ if(isset($_POST["signup"])){
     $password = $obj->security($_POST["password"]);
     $img_name = $obj->security($_FILES['img']['name']);
     $img_tmp  = $_FILES['img']['tmp_name'];
-    $img_path = "assets/images/user_images/";
+    $img_path = "assets/images/user_images/{$email}";
     $img_extensions = ['jpg','jpeg','png'];
     $img_ext = explode(".", $img_name);
     $img_ext_last = end($img_ext);
@@ -65,7 +66,11 @@ if(isset($_POST["signup"])){
     }
     //Check Values and upload to db
     if(!empty($username_status) && !empty($email_status) && !empty($password_status) && !empty($image_status)){
-        $img_path = $img_path.$img_name;
+        if (!file_exists($img_path)) {
+            mkdir($img_path, 0777, true);
+        }
+        $img_path = $img_path."/".$img_name;
+
         move_uploaded_file($img_tmp, "$img_path");
         $obj->normal_Query("INSERT INTO users(user_name, user_email, user_password, image, status) VALUES (?,?,?,?,?)", [$username, $email, password_hash($password, PASSWORD_DEFAULT), $img_name, $status]);
         $obj->create_Session("account_created", "Your account is successfully created");

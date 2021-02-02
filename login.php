@@ -27,9 +27,12 @@ if(isset($_POST["login"])){
                 $user_image = $row->image;
 
                 if(password_verify($password, $db_password)){
+                    $user_status = 1;
+                    $obj->normal_Query("UPDATE users SET status = ? WHERE user_id = ?", [$user_status, $user_id]);
                     $obj->create_Session("user_name", $user_name);
                     $obj->create_Session("user_id", $user_id);
                     $obj->create_Session("user_image", $user_image);
+                    $obj->create_Session("user_email", $email);
                     header("Location:index.php");   
                 } else {
                     $password_error = "Incorrect password";
@@ -49,6 +52,18 @@ if(isset($_POST["login"])){
     <?php include "components/css.php"; ?> 
 </head>
 <body>
+    <?php if(isset($_SESSION["security"])): ?>
+        <div class="flash-message error-flash">
+        <span class="remove-flash">&times;</span>
+        <div class="flash-heading">
+            <h3><span class="cross">&#x2715;</span> Error: </h3>
+        </div>
+        <div class="flash-body">
+            <p><?php echo $_SESSION["security"]; ?></p>
+        </div>
+    </div>flash message
+    <?php endif; ?>
+    <?php unset($_SESSION["security"]); ?>
     <div class="sign-up-container">
         <div class="sign-up-left">
             <div class="left-side-text">
