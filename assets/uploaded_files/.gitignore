@@ -1,0 +1,5 @@
+# Ignore everything in this directory
+*
+alizee-baudez.jpg
+logo.png
+!.gitignore
