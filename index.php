@@ -11,17 +11,16 @@ include "security.php";
     <?php include "components/css.php"; ?>
 </head>
 <body>
-    <?php if(isset($_SESSION["flash_success"])):     ?>
-        <div class="flash-message success-flash">
-            <span class="remove-flash">&times;</span>
-            <div class="flash-heading">
-                <h3><span class="checked">&#10004;</span> Update: </h3>
-            </div> <!-- flash heading -->
-            <div class="flash-body">
-                <p><?php echo $_SESSION["flash_success"]; ?></p>
-            </div>
-        </div><!-- flash message -->
-    <?php endif; ?>
+    <?php 
+        if(isset($_SESSION["loader"])){
+            include "components/loader.php";
+        }
+        unset($_SESSION["loader"]);
+    ?>
+
+    <?php if(isset($_SESSION["flash_success"])){
+        success_flash_message($_SESSION["flash_success"]);
+    }?>
     <?php unset($_SESSION["flash_success"]); ?>
     <?php include "components/nav.php"; ?>
     <div class="chat-main-container">
@@ -33,5 +32,13 @@ include "security.php";
         </section> <!--Right area -->
     </div> <!-- chat main container -->
     <?php include "components/js.php"; ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".loader-area").show();
+            setTimeout(function(){
+                $(".loader-area").hide()
+            }, 1500)
+        })
+    </script>
 </body>
 </html>

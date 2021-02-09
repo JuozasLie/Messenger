@@ -11,7 +11,7 @@
             } ?> 
         </div>
         <div class="group">
-            <input type="password" name="current_password" class="control" placeholder="Enter Your Old Password" value="<?php if(isset($current_password)): echo $current_password; endif; ?>">
+            <input type="password" name="current_password" class="control" placeholder="Enter Your Old Password">
         </div><!-- group -->
         <div class="password-error error">
             <?php
@@ -20,7 +20,7 @@
             } ?> 
         </div>
         <div class="group">
-            <input type="password" name="new_password" class="control" placeholder="Enter Your New Password" value="<?php if(isset($new_password)): echo $new_password; endif; ?>">
+            <input type="password" name="new_password" class="control" placeholder="Enter Your New Password">
         </div><!-- group -->
         <div class="password-error error">
             <?php
@@ -29,7 +29,7 @@
             } ?> 
         </div>
         <div class="group">
-            <input type="password" name="retype_new_password" class="control" placeholder="Retype Your New Password" value="<?php if(isset($retype_password)): echo $retype_password; endif; ?>">
+            <input type="password" name="retype_new_password" class="control" placeholder="Retype Your New Password">
         </div><!-- group -->
         <div class="group">
             <input type="submit" name="change_password" class="btn signup-btn" value="Save Changes">

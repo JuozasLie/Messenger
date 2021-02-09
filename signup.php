@@ -1,10 +1,9 @@
 <?php
 include "init.php";
-include "security";
 $obj = new base_class;
 if(isset($_POST["signup"])){
     $username = $obj->security($_POST["user_name"]);
-    $email    = $obj->security($_POST["email"]);
+    $email    = strtolower($obj->security($_POST["email"]));
     $password = $obj->security($_POST["password"]);
     $img_name = $obj->security($_FILES['img']['name']);
     $img_tmp  = $_FILES['img']['tmp_name'];
@@ -13,6 +12,7 @@ if(isset($_POST["signup"])){
     $img_ext = explode(".", $img_name);
     $img_ext_last = end($img_ext);
     $status = 0;
+    $clean_status = 0;
     
 
     $username_status = $email_status = $password_status = $image_status = 1;
@@ -70,10 +70,9 @@ if(isset($_POST["signup"])){
             mkdir($img_path, 0777, true);
         }
         $img_path = $img_path."/".$img_name;
-
         move_uploaded_file($img_tmp, "$img_path");
-        $obj->normal_Query("INSERT INTO users(user_name, user_email, user_password, image, status) VALUES (?,?,?,?,?)", [$username, $email, password_hash($password, PASSWORD_DEFAULT), $img_name, $status]);
-        $obj->create_Session("account_created", "Your account is successfully created");
+        $obj->normal_Query("INSERT INTO users(user_name, user_email, user_password, image, status, clean_status) VALUES (?,?,?,?,?,?)", [$username, $email, password_hash($password, PASSWORD_DEFAULT), $img_name, $status, $clean_status]);
+        $obj->create_Session("flash_success", "Your account was successfully created");
         header("Location: login.php");
     }
 }

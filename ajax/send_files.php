@@ -5,7 +5,7 @@ if(isset($_FILES['send_file']['name'])){
     $file_name = $obj->security($_FILES['send_file']['name']);
     $file_tmp_name = $_FILES['send_file']['tmp_name'];
     $file_path = "../assets/uploaded_files/";
-    $extensions = ["jpg", "JPG", "jpeg", "png", "pdf", "zip", "docx", "xlsx"];
+    $extensions = ["jpg", "JPG", "jpeg", "png", "pdf", "zip", "docx", "xlsx", "PDF", "PNG", "ZIP"];
     $file_extension = explode(".", $file_name);
     $get_file_extension = end($file_extension);
     if(!in_array($get_file_extension, $extensions)){

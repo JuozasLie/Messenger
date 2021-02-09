@@ -1,4 +1,52 @@
+// show messages with ajax from database
+function show_messages(){
+    let msg = true;
+    $.ajax({
+        type : 'GET',
+        url  : 'ajax/show_messages.php',
+        data : {'message': msg},
+        success : function(feedback){
+            $(".message-area").html(feedback);
+        }
+    })
+}
+//scroll to the bottom of the chat
+function scroll_bottom(){
+    $(".message-area").animate({scrollTop: 9999 },1500);
+}
+//Display online users
+function online_users(){
+    $.ajax({
+        type : "GET",
+        url  : "ajax/online_users.php",
+        dataType : "JSON",
+        success : function(feedback){
+            if(feedback['users'] == 1){
+                $(".online-users").html("Only you are online"); 
+            } else {
+                $(".online-users").html(feedback["users"] + " users online");
+            }
+            
+        }
+    })
+}
+//Check user login time and log them out
+function user_status(){
+    $.ajax({
+        type : 'GET',
+        url  : 'ajax/user_status.php',
+        dataType : 'JSON',
+        success : function(feedback){
+            if(feedback['status'] == "href"){
+                window.location = "login.php";
+            }
+        }
+    })
+}
 $(document).ready(function(){
+    show_messages();
+    scroll_bottom();
+    online_users();
     $(".chat-form").keypress(function(event){
         if(event.keyCode == 13){
             let send_message = $("#send_message").val();
@@ -10,7 +58,8 @@ $(document).ready(function(){
                     dataType: "JSON",
                     success: function(feedback){
                         if(feedback.status == "success"){
-                            alert("message is sent");
+                            show_messages();
+                            scroll_bottom();
                             $(".chat-form").trigger("reset");
                         }
                     }
@@ -36,7 +85,8 @@ $(document).ready(function(){
                             $('.files-error').removeClass("show-file-error");
                         }, 5000)
                     } else if(feedback == "success"){
-                        alert("file uploaded successfully");
+                        show_messages();
+                        scroll_bottom();
                     }
                 }
             })
@@ -52,9 +102,35 @@ $(document).ready(function(){
             dataType: 'JSON',
             success: function(feedback){
                 if(feedback.status == "success"){
-                    alert("emoji sent");
+                    show_messages();
+                    scroll_bottom();
                 }
             }
         })
     })
+    //remove messages
+    $(".clean-chat").click(function(){
+        $.ajax({
+            type : 'POST',
+            url  : 'ajax/clean.php',
+            data : {'clean' : true},
+            dataType : 'JSON',
+            success : function(feedback){
+                if(feedback['status'] == 'clean'){
+                    show_messages();
+                    scroll_bottom();
+                }
+            }
+        })
+    })
+    //send ajax requests
+    setInterval(() => {
+        show_messages();
+    }, 3000);
+    setInterval(() => {
+        online_users();
+    }, 1000);
+    setInterval(() => {
+        user_status();
+    }, 300,000);
 })

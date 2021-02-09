@@ -26,6 +26,7 @@ class base_class extends db {
     public function single_Result(){
         return $this->query->fetch(PDO::FETCH_OBJ);
     }
+    
 }
 
 

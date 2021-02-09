@@ -3,7 +3,7 @@
 
 $obj = new base_class;
 if(isset($_POST["login"])){
-    $email = $obj->security($_POST["email"]);
+    $email = strtolower($obj->security($_POST["email"]));
     $password = $obj->security($_POST["password"]);
     $email_status = $password_status = 1;
     if(empty($email)){
@@ -25,23 +25,29 @@ if(isset($_POST["login"])){
                 $user_id = $row->user_id;
                 $user_name = $row->user_name;
                 $user_image = $row->image;
+                $clean_status = $row->clean_status;
+                $login_time = time();
 
                 if(password_verify($password, $db_password)){
                     $user_status = 1;
-                    $obj->normal_Query("UPDATE users SET status = ? WHERE user_id = ?", [$user_status, $user_id]);
-                    $obj->create_Session("user_name", $user_name);
-                    $obj->create_Session("user_id", $user_id);
-                    $obj->create_Session("user_image", $user_image);
-                    $obj->create_Session("user_email", $email);
-                    header("Location:index.php");   
+                    update_user_login_status($user_id, $user_status);
+                    if($clean_status == 0){
+                        clean_messages($user_id);
+                        set_login_time($user_id, $login_time);
+                        create_login_sessions($user_name, $user_id, $user_image, $email);
+                        header("Location:index.php");  
+                    } else {
+                        set_login_time($user_id, $login_time);
+                        create_login_sessions($user_name, $user_id, $user_image, $email);
+                        header("Location:index.php"); 
+                        }   
                 } else {
                     $password_error = "Incorrect password";
-                }
+                    }
             }
         }
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,18 +58,14 @@ if(isset($_POST["login"])){
     <?php include "components/css.php"; ?> 
 </head>
 <body>
-    <?php if(isset($_SESSION["security"])): ?>
-        <div class="flash-message error-flash">
-        <span class="remove-flash">&times;</span>
-        <div class="flash-heading">
-            <h3><span class="cross">&#x2715;</span> Error: </h3>
-        </div>
-        <div class="flash-body">
-            <p><?php echo $_SESSION["security"]; ?></p>
-        </div>
-    </div>flash message
-    <?php endif; ?>
+    <?php if(isset($_SESSION["security"])){
+        error_flash_message($_SESSION["security"]);
+    } ?>
     <?php unset($_SESSION["security"]); ?>
+    <?php if(isset($_SESSION["flash_success"])){
+        success_flash_message($_SESSION["flash_success"]);
+    }?>
+    <?php unset($_SESSION["flash_success"]); ?>
     <div class="sign-up-container">
         <div class="sign-up-left">
             <div class="left-side-text">
